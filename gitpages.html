@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Резюме · Степанов Н.О.</title>
+  <style>
+    /* Глобальный сброс и база — чёрный стиль с красным градиентом */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0b0b;
+      background-image: radial-gradient(circle at 30% 10%, #1a0a0a 0%, #000000 90%);
+      min-height: 100vh;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #eaeaea;
+      line-height: 1.5;
+    }
+
+    .main-wrapper {
+      max-width: 1400px;
+      width: 100%;
+      background: #0f0f0f;
+      border-radius: 40px;
+      padding: 2rem 2rem 1.8rem;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(180, 0, 0, 0.25);
+      border: 1px solid #2a1212;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .main-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 42px;
+      padding: 2px;
+      background: conic-gradient(from 0deg, #ff1a1a, #b30000, #660000, #ff1a1a, #b30000);
+      background-size: 300% 300%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rotateGlow 12s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes rotateGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .main-wrapper > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== ПЕРСОНАЛЬНЫЙ БЛОК ===== */
+    .personal-block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background: #131010;
+      border-radius: 30px;
+      padding: 1.2rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #2a1515;
+      box-shadow: inset 0 0 20px rgba(120, 0, 0, 0.08);
+    }
+
+    .personal-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.8rem 2rem;
+    }
+
+    .personal-info .name {
+      font-size: 1.8rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff3b3b, #cc0000);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .personal-info .age {
+      color: #b0a0a0;
+      font-weight: 300;
+      background: #1f1010;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      border: 1px solid #3d1a1a;
+      font-size: 0.9rem;
+    }
+
+    .personal-info .edu {
+      color: #c0b0b0;
+      background: #1a0e0e;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #3d1a1a;
+      font-size: 0.9rem;
+    }
+
+    /* ===== БЛОК ПОЧТЫ ===== */
+    .email-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+      background: #0e0909;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      border: 1px solid #331818;
+    }
+
+    .email-block a {
+      color: #e6caca;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      border-bottom: 1px dotted #551f1f;
+      padding-bottom: 2px;
+    }
+
+    .email-block a:hover {
+      color: #ff7a7a;
+      border-bottom-color: #cc3a3a;
+      text-shadow: 0 0 10px rgba(200, 0, 0, 0.2);
+    }
+
+    /* ===== СЕТКА КАРТОЧЕК ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .card {
+      background: #111111;
+      border-radius: 28px;
+      padding: 1.8rem 1.8rem 2rem;
+      border: 1px solid #2b1818;
+      box-shadow: 0 8px 0 #1a0a0a, 0 12px 30px rgba(200, 0, 0, 0.15);
+      transition: all 0.2s ease;
+      backdrop-filter: blur(2px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(200, 0, 0, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatRed 8s infinite alternate;
+    }
+
+    @keyframes floatRed {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      100% { transform: translate(-30px, 30px) scale(1.4); opacity: 0.7; }
+    }
+
+    .card:hover {
+      border-color: #7a1a1a;
+      box-shadow: 0 8px 0 #2a0a0a, 0 20px 40px rgba(200, 0, 0, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .card h2 {
+      font-weight: 600;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #2b1515;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #f0f0f0;
+    }
+
+    .card h2 span {
+      background: #1f0c0c;
+      padding: 0.15rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #ff7a7a;
+      border: 1px solid #531a1a;
+      letter-spacing: 0.04em;
+      margin-left: auto;
+      text-transform: uppercase;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.5rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .badge {
+      background: #1f1111;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 450;
+      color: #e6d0d0;
+      border: 1px solid #3d1a1a;
+      letter-spacing: 0.02em;
+      transition: 0.15s;
+    }
+
+    .badge:hover {
+      background: #2f1515;
+      border-color: #a33a3a;
+      color: #ffd9d9;
+      box-shadow: 0 0 12px rgba(200, 0, 0, 0.2);
+    }
+
+    ul {
+      list-style: none;
+      margin: 0.6rem 0 0 0;
+    }
+
+    ul li {
+      padding: 0.3rem 0 0.3rem 1.8rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23ff3b3b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+      background-size: 1.1rem;
+      margin-bottom: 0.1rem;
+      color: #d4d4d4;
+      border-bottom: 1px solid #191010;
+      transition: 0.1s;
+    }
+
+    ul li:hover {
+      color: #ffffff;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%23ff5e5e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+      background-size: 1.1rem;
+      padding-left: 1.9rem;
+    }
+
+    /* ===== ТЕХНОЛОГИИ ===== */
+    .tech-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.2rem;
+      margin-top: 2rem;
+      background: #141010;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      border: 1px solid #331818;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      box-shadow: inset 0 0 20px rgba(180, 0, 0, 0.1);
+      transition: 0.2s;
+    }
+
+    .tech-strip:hover {
+      border-color: #772222;
+      box-shadow: 0 0 30px rgba(200, 0, 0, 0.2), inset 0 0 20px rgba(180, 0, 0, 0.2);
+    }
+
+    .tech-item {
+      font-weight: 450;
+      color: #cfcfcf;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .tech-item strong {
+      color: #ff5e5e;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(255, 30, 30, 0.3);
+    }
+
+    .tech-item .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #cc2222;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: blinkDot 2.4s infinite;
+    }
+
+    @keyframes blinkDot {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); background: #ff4444; }
+    }
+
+    /* ===== АДАПТИВ ===== */
+    @media (max-width: 900px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .personal-block {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .personal-info {
+        justify-content: center;
+      }
+      .email-block {
+        justify-content: center;
+      }
+      .main-wrapper {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0.8rem; }
+      .main-wrapper { padding: 0.8rem; }
+      .card { padding: 1.2rem; }
+      .tech-strip { padding: 0.8rem 1.2rem; gap: 0.6rem 1.2rem; }
+      .personal-info .name { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+
+    <div class="personal-block">
+      <div class="personal-info">
+        <span class="name">Степанов Никита Олегович</span>
+        <span class="age">22 года</span>
+        <span class="edu">ЧГУ им. И. Н. Ульянова</span>
+      </div>
+      <div class="email-block">
+        <a href="mailto:the.nekit.2004@gmail.com">the.nekit.2004@gmail.com</a>
+        <a href="mailto:mig.nikita@mail.ru">mig.nikita@mail.ru</a>
+        <a href="mailto:sir.kartoshnik@yandex.ru">sir.kartoshnik@yandex.ru</a>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <section class="card">
+        <h2>
+          Backend-разработчик
+          <span>вакансия</span>
+        </h2>
+        <div class="badge-list">
+          <span class="badge">СУБД М</span>
+          <span class="badge">REST API</span>
+          <span class="badge">XML/JSON</span>
+          <span class="badge">OAuth 2.0</span>
+          <span class="badge">PostgreSQL / MS SQL</span>
+          <span class="badge">Python · C#</span>
+        </div>
+        <ul>
+          <li>Разработка и доработка ПК на платформе с СУБД М</li>
+          <li>Сопровождение и оптимизация действующих комплексов</li>
+          <li>Проектирование структур данных, оптимизация хранения</li>
+          <li>Написание и отладка М-рутин, рефакторинг</li>
+          <li>Интеграция: обмен данными через REST API и XML</li>
+          <li>Проектирование эндпоинтов, работа с JSON/XML</li>
+          <li>Настройка OAuth 2.0, API-ключи, обработка ошибок</li>
+          <li>Разработка процессов обмена данными между системами</li>
+          <li>Парсинг и валидация XML, работа с сегментами и типами</li>
+          <li>Применение ИИ для автоматизации рутинных задач</li>
+          <li>Написание скриптов автоматизации на Python и C#</li>
+          <li>Разбор и рефакторинг legacy-кода, умение читать чужой код</li>
+          <li>Документирование кода, подготовка техдокументации</li>
+          <li>Участие в Code Review</li>
+          <li>Работа с реляционными СУБД: PostgreSQL, MS SQL Server</li>
+          <li>Git и SVN: branching, merge, pull requests</li>
+          <li>Поддержка CI/CD</li>
+          <li>VS Code, инструменты отладки</li>
+          <li>Диагностика и устранение инцидентов, техподдержка</li>
+          <li>Свободное владение офисным ПО, аналитическое мышление</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>
+          Инженер-программист
+          <span>профиль</span>
+        </h2>
+        <div class="badge-list">
+          <span class="badge">СУБД М</span>
+          <span class="badge">REST / XML</span>
+          <span class="badge">OAuth 2.0</span>
+          <span class="badge">PostgreSQL · MS SQL</span>
+          <span class="badge">Python · C#</span>
+          <span class="badge">CI/CD</span>
+        </div>
+        <ul>
+          <li>Проектирование и разработка ПК с использованием СУБД М</li>
+          <li>Доработка и сопровождение существующих систем, оптимизация</li>
+          <li>Работа со структурами данных, проектирование схем хранения</li>
+          <li>Написание, отладка и рефакторинг М-рутин, разбор кода</li>
+          <li>Интеграция с внешними системами через REST API, XML</li>
+          <li>Проектирование эндпоинтов, обработка JSON/XML</li>
+          <li>Реализация OAuth 2.0, управление API-ключами, обработка ошибок</li>
+          <li>Участие в разработке процессов обмена данными</li>
+          <li>Парсинг и валидация XML, работа с сегментами и типами</li>
+          <li>Применение ИИ для автоматизации рутинных задач</li>
+          <li>Написание и поддержка скриптов на Python и C#</li>
+          <li>Разбор legacy-кода, рефакторинг legacy-систем</li>
+          <li>Подготовка технической документации, документирование</li>
+          <li>Участие в Code Review</li>
+          <li>Проектирование и работа с реляционными СУБД (PostgreSQL, MS SQL)</li>
+          <li>Командная разработка с Git и SVN, pull requests</li>
+          <li>Настройка и сопровождение CI/CD</li>
+          <li>VS Code, инструменты отладки</li>
+          <li>Диагностика и устранение инцидентов, техподдержка</li>
+          <li>Свободное владение офисным ПО, аналитическое мышление</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="tech-strip">
+      <span class="tech-item"><span class="dot"></span><strong>СУБД М</strong> · M-рутины</span>
+      <span class="tech-item"><span class="dot"></span><strong>REST API</strong> · JSON / XML</span>
+      <span class="tech-item"><span class="dot"></span><strong>OAuth 2.0</strong> · API-ключи</span>
+      <span class="tech-item"><span class="dot"></span><strong>PostgreSQL</strong> · MS SQL</span>
+      <span class="tech-item"><span class="dot"></span><strong>Python / C#</strong> · скрипты</span>
+      <span class="tech-item"><span class="dot"></span><strong>Git · SVN</strong> · CI/CD</span>
+      <span class="tech-item"><span class="dot"></span><strong>VS Code</strong> · отладка</span>
+    </div>
+
+  </div>
+</body>
+</html>
